@@ -2,6 +2,12 @@
 echo $PWD
 
 cd ./build/bin/
+
+if [ "$#" -ne "1" ]; then
+    echo -e "Please provide cluster name"
+    exit 1
+fi
+
 cluster_name=$1
 
 endpoint=$(./kontainer-engine_darwin-amd64 inspect $cluster_name |jq .endpoint|cut -f2 -d '"')

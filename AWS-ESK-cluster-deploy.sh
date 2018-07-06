@@ -36,14 +36,6 @@ while getopts ":ha:c:d:e:f:g:i:j:" opt; do
 done
 
 shift $(($OPTIND - 1))
-echo -e "cluster_name=$cluster_name"
-echo -e "display=$display"
-echo -e "client_id=$client_id"
-echo -e "client_secret=$client_secret"
-echo -e "region_name=$region_name"
-echo -e "instance_type=$instance_type"
-echo -e "min_nodes=$min_nodes"
-echo -e "max_nodes=$max_nodes"
 
 if [ -z $cluster_name ]  ; then
   echo -e "Please enter the cluster name"
@@ -86,6 +78,15 @@ if [ -z $max_nodes ]  ; then
   usage
   exit 1
 fi
+
+echo -e "cluster_name=$cluster_name"
+echo -e "display=$display"
+echo -e "client_id=$client_id"
+echo -e "client_secret=$client_secret"
+echo -e "region_name=$region_name"
+echo -e "instance_type=$instance_type"
+echo -e "min_nodes=$min_nodes"
+echo -e "max_nodes=$max_nodes"
 
 echo -e "START K8s provisionning"
 ./build/bin/kontainer-engine_darwin-amd64 create $cluster_name --driver eks --display-name $display --client-id $client_id --client-secret $client_secret --region $region_name --instance-type $instance_type --minimum-nodes $min_nodes --maximum-nodes $max_nodes
