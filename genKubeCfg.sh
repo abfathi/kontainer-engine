@@ -38,3 +38,4 @@ users:
 EOF
 
 cp ./config-eks ~/.kube/config
+rm ./config-eks
