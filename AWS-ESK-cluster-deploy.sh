@@ -37,7 +37,6 @@ done
 
 shift $(($OPTIND - 1))
 echo -e "cluster_name=$cluster_name"
-echo -e "driver=$driver"
 echo -e "display=$display"
 echo -e "client_id=$client_id"
 echo -e "client_secret=$client_secret"
