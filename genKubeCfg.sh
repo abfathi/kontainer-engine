@@ -11,6 +11,7 @@ fi
 cluster_name=$1
 
 endpoint=$(./kontainer-engine_darwin-amd64 inspect $cluster_name |jq .endpoint|cut -f2 -d '"')
+#aws eks describe-cluster --name devel  --query cluster.endpoint
 echo "endpoint=$endpoint"
 
 certificateAuthority=$(aws eks describe-cluster --name $cluster_name  --query cluster.certificateAuthority.data|cut -f2 -d '"')
@@ -43,5 +44,4 @@ users:
         - $cluster_name
 EOF
 
-cp ./config-eks ~/.kube/config
-rm ./config-eks
+mv ./config-eks ~/.kube/config
